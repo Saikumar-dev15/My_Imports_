@@ -1,6 +1,6 @@
 # Seriesa = Series is a one-dimensional array-like object that can hold many data types, including objects, floats, and integers. It is similar to a column in a DataFrame.
 
-import pandas as pd
+import  pandas as pd  # type: ignore
 data = [101, 102, 103]
 series = pd.Series(data, index = ["a", "b", "c"])
 #print(series)
