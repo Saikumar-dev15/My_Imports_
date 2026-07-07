@@ -177,7 +177,7 @@ data = {
     "Salary" : [50000, 60000, 70000, 80000, 90000]
 }
 df =pd.DataFrame(data)
-print(df)
+#print(df)
 
 scalar = MinMaxScaler()
 df_scaled = scalar.fit_transform(df)
@@ -267,17 +267,43 @@ x_train, x_test, y_train, y_test
 model = LinearRegression()
 model.fit(x_train, y_train)
 
-print("Slope(m): ", model.coef_[0])
-print("Intercept(c): ", model.intercept_)
+#print("Slope(m): ", model.coef_[0])
+#print("Intercept(c): ", model.intercept_)
 
 y_pred = model.predict(x_test)
-print("Predicted marks for test data: ", y_pred)
-print("Actual marks for test data: ", y_test.values)
+#print("Predicted marks for test data: ", y_pred)
+#print("Actual marks for test data: ", y_test.values)
 
-plt.scatter(x_test, y_test, color='blue', label='Actual Marks')
-plt.plot(x_test, y_pred, color='red', label='Regression Line')
-plt.xlabel('Hours of Study')
-plt.ylabel('Marks')
-plt.title('Linear Regression: Hours of Study vs Marks')
-plt.legend()
-plt.show()
+#plt.scatter(x_test, y_test, color='blue', label='Actual Marks')
+#plt.plot(x_test, y_pred, color='red', label='Regression Line')
+#plt.xlabel('Hours of Study')
+#plt.ylabel('Marks')
+#plt.title('Linear Regression: Hours of Study vs Marks')
+#plt.legend()
+#plt.show()
+
+
+
+#logistic  regression
+from sklearn.linear_model import LogisticRegression
+
+data = {
+    'study_hours': [1,2,3,4,5,6,7,8,9,10],
+    'attendance' : [40,50,55,60,70,75,80,85,90,95],
+    'passed_exam': [0,0,0,1,1,1,1,1,1,1]
+}
+
+df = pd.DataFrame(data)
+
+x = df[['study_hours', 'attendance']]
+y = df[['passed_exam']]
+
+x_train , x_test, y_train, y_test = train_test_split(x,y, test_size=0.2)
+
+model = LogisticRegression()
+model.fit(x_train , y_train)
+
+y_pred = model.predict(x_test)
+print(y_pred)
+
+

@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as  plt
+from sklearn.preprocessing import minmax_scale
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
@@ -34,4 +35,9 @@ df["Price"] = df["Price"].clip (lower= lower , upper = upper)
 
 #print(df.loc[:, "Price"])
 
+
+# Normalization
+columns = ["Area", "Bathrooms", "House_Age", "Parking", "Price"]
+df[columns] = minmax_scale(df[columns])
+#print(df.head())
 
