@@ -58,7 +58,33 @@ model.fit(x_train, y_train)
 customer = [[36, 60000]]
 predict = model.predict(customer)
 probability = model.predict_proba(customer)
-print("Predicted Class:", predict[0])
-print("Probability of not purchasing:", probability[0][0])
-print("Probability of purchasing:", probability[0][1])
+#print("Predicted Class:", predict[0])
+#print("Probability of not purchasing:", probability[0][0])
+#print("Probability of purchasing:", probability[0][1])
 
+
+
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+
+df = pd.read_csv("ML Class/BC Dataset.csv")
+
+#print(df.columns)
+print(df.columns.tolist())
+#print(df)
+
+x = df[["Previous_Marks", "Study_Hours"]]
+y = df["Pass"]
+
+x_train , x_test, y_train , y_test = train_test_split(
+    x,y, train_size=0.8 , random_state = 42
+    )
+
+model = LogisticRegression()
+model.fit(x_train , y_train)
+
+predict = model.predict(x_test)
+probability = model.predict_proba(x_test)
+print("Predicted data: ",predict)
+print("Predicted probability of data: ",probability)
