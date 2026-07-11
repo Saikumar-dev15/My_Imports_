@@ -3,12 +3,31 @@ import matplotlib.pyplot as plt
 
 tips = sns.load_dataset("tips")
 
-sns.scatterplot(data=tips, x="total_bill", y="tip", color= "red")
+#sns.scatterplot(data=tips, x="total_bill", y="tip", color= "red")
 
-plt.show()
+#plt.show()
 
 
 #Line plot
 
-sns.lineplot(x="size", y="tip", data=tips)
+#sns.lineplot(x="size", y="tip", data=tips)
+
+#sns.countplot(data=tips, x="sex")
+
+#sns.countplot(
+#    x="day",
+#    data=tips,
+#    hue="sex",
+#    palette="Set2"                     #Colors
+#    )
+#.show()
+
+
+#sns.histplot(
+#    data=tips,
+#    x="total_bill", bins=10, color="skyblue", edgecolor= "black", kde=True,  alpha=0.8,                 
+#)
+#plt.show()
+
+sns.boxplot(data=tips , y="total_bill")
 plt.show()
