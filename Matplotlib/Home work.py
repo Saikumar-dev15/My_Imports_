@@ -27,6 +27,9 @@ exam_marks = [45, 50, 55, 60, 62, 65, 68, 70, 72, 75, 78,80 ,85,90,92,95]
 #                                 alpha= 0.7)
 #plt.title("Study_Hours VS Scores")
 
-
+plt.hist(exam_marks, color="Yellow",
+                     edgecolor= "black",
+                     alpha= 0.6,
+                     bins= 10)   
 
 plt.show()
