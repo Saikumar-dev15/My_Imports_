@@ -80,3 +80,32 @@ y_score = [0.1, 0.4, 0.35, 0.8]
 
 auc = roc_auc_score(y_true , y_score)
 print(f"AUC : {auc}")
+
+
+
+
+#Evaluation metrics for regression
+
+#MAE = mean absoulte error
+#MSE = mean squared error
+#RMSE = root mean square error
+
+#R-squared (Coefficient of Determination)
+#R^2 = 1:     perfect prediction
+#R^2 = 0:     model performs no better than predicting the mean
+#R^2 < 0:    model performs worse than predcting the mean
+
+
+from sklearn.metrics import (
+    mean_absolute_error,
+    mean_squared_error,
+    root_mean_squared_error,
+    r2_score
+)
+y_true= [10,15,20,25]
+y_pred = [8,18, 19, 22]
+
+print("MAE: ", mean_absolute_error(y_true, y_pred))
+print("MSE: ", mean_squared_error(y_true, y_pred))
+print("RMSE: ", root_mean_squared_error(y_true, y_pred))
+print("R Score: ", r2_score(y_true, y_pred))
