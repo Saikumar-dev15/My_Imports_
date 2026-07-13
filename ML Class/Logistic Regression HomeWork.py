@@ -33,7 +33,6 @@ prob_pred = model.predict_proba([[5]])
 
 
 
-
 from sklearn.linear_model import LogisticRegression
 
 
