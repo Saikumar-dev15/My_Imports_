@@ -1,6 +1,7 @@
 import numpy as np 
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.preprocessing import  MinMaxScaler,StandardScaler
 from sklearn.linear_model import LinearRegression , LogisticRegression
 from sklearn.model_selection import train_test_split
@@ -66,7 +67,7 @@ y_pred = model.predict(x_test)
 print(y_pred)
 
 
-df["Pass"] = (df["Math_Score"] >= 75).astype(int)
+df["Pass"] = (df["Math_Score"] >= 80).astype(int)
 print(df["Pass"].value_counts())
 
 x = df[["Reading_Score",
@@ -93,3 +94,37 @@ print(x_pred)
 print(y_train.value_counts())
 print(y_test.value_counts())
 
+X = df["Math_Score"]
+Y= df["Placement_Score"]
+
+plt.bar(X,Y, color= "Blue",
+             alpha=0.4,
+             )
+plt.title("Maths_score vs Placement_Score")
+plt.xlabel("Maths_score")
+plt.ylabel("Placement_Score")
+plt.show()
+
+
+X = df["Math_Score"]
+Y= df["Club_Join_Date"]
+plt.scatter(X,Y , color="orange")
+plt.title("Maths_score vs Club_Join_Date")
+plt.xlabel("Maths_score")
+plt.ylabel("Club_Join_Date")
+plt.show()
+
+
+X= df["Writing_Score"]
+plt.hist(X,    color= "orange",
+               bins= 50,
+               edgecolor="black")
+plt.title("Score board")
+plt.xlabel("Writing_Score")
+plt.show()
+
+X = df["Reading_Score"]
+sns.lineplot(X, color= "orange")
+plt.title("Reading_Score")
+plt.xlabel("Reading_Score")
+plt.show()
