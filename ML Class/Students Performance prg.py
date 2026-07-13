@@ -40,4 +40,27 @@ upper = q3 + 1.5*IQR
 
 outlier = df[(df["Writing_Score"]< lower) | (df["Reading_Score"]> upper)]
 
-print(outlier)
+x = df[["Math_Score",
+        "Writing_Score",
+        "Placement_Score","Club_Join_Date"
+        ]]
+columns = MinMaxScaler()
+scalar = columns.fit_transform(x)
+#print(scalar)
+
+x = df[["Reading_Score",
+        "Writing_Score",
+       "Placement_Score",
+       "Club_Join_Date"]]
+
+y = df[["Math_Score"]]
+
+x_train, x_test, y_train , y_test = train_test_split(
+    x,y, train_size=0.8, random_state=42
+)
+
+model = LinearRegression()
+model.fit(x_test, y_test)
+
+y_pred = model.predict(x_test)
+print(y_pred)
