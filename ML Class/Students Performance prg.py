@@ -56,18 +56,17 @@ x = df[["Reading_Score",
 
 y = df[["Math_Score"]]
 
-x_train, x_test, y_train , y_test = train_test_split(
+x_train, x_test, y_train , y_test_reg = train_test_split(
     x,y, train_size=0.8, random_state=42
 )
 
 model = LinearRegression()
 model.fit(x_train, y_train)
 
-y_pred = model.predict(x_test)
-print(y_pred)
+y_pred_reg = model.predict(x_test)
+print(y_pred_reg)
 
-
-df["Pass"] = (df["Math_Score"] >= 80).astype(int)
+df["Pass"] = (df["Math_Score"] >= 65).astype(int)
 print(df["Pass"].value_counts())
 
 x = df[["Reading_Score",
@@ -78,7 +77,7 @@ x = df[["Reading_Score",
 y = df["Pass"]
 
 x_train, x_test, y_train , y_test = train_test_split(
-    x,y, test_size=0.2, random_state=42 , stratify=y
+    x,y, train_size=0.8, random_state=42 , stratify=y
 )
 
 scalar = StandardScaler()
@@ -86,13 +85,36 @@ x_train = scalar.fit_transform(x_train)
 x_test = scalar.transform(x_test)
 
 model = LogisticRegression(max_iter=1000)
-model.fit(x_test, y_test)
+model.fit(x_train, y_train)
 
-x_pred = model.predict(x_test)
+y_pred = model.predict(x_test)
 
-print(x_pred)
+print(y_pred)
 print(y_train.value_counts())
 print(y_test.value_counts())
+
+
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy}")
+
+precision = precision_score(y_test, y_pred)
+print(f"Precision_score: {precision}")
+
+recall = recall_score(y_test, y_pred)
+print(f"Recall score: {recall}")
+
+f1score = f1_score(y_test, y_pred)
+print(f"f1 score: {f1score}")
+
+confusion  = confusion_matrix(y_test, y_pred)
+print(f"confusion_matrix: {confusion}")
+
+
+print(f"MAE: ", mean_absolute_error(y_test_reg, y_pred_reg))
+print(f"MSE: ", mean_squared_error(y_test_reg, y_pred_reg))
+print(f"RMSE: ", root_mean_squared_error(y_test_reg, y_pred_reg))
+print(f"f_score: ", r2_score(y_test_reg, y_pred_reg))
+
 
 X = df["Math_Score"]
 Y= df["Placement_Score"]
