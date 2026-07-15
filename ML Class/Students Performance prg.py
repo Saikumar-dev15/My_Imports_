@@ -116,6 +116,13 @@ print(f"RMSE: ", root_mean_squared_error(y_test_reg, y_pred_reg))
 print(f"f_score: ", r2_score(y_test_reg, y_pred_reg))
 
 
+
+corr = df.corr(numeric_only=True)
+print(corr)
+sns.heatmap(corr, annot=True, cmap="coolwarm")
+plt.show()
+
+
 X = df["Math_Score"]
 Y= df["Placement_Score"]
 
@@ -149,4 +156,7 @@ X = df["Reading_Score"]
 sns.lineplot(X, color= "orange")
 plt.title("Reading_Score")
 plt.xlabel("Reading_Score")
+plt.show()
+
+sns.pairplot(df, hue="Pass")
 plt.show()
