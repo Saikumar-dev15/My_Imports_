@@ -29,5 +29,28 @@ tips = sns.load_dataset("tips")
 #)
 #plt.show()
 
-sns.boxplot(data=tips , y="total_bill")
+sns.boxplot(data=tips , y="total_bill", 
+            hue="sex",
+            palette="Set2")
+#plt.figure(figsize=(8,5))
+plt.show()
+
+
+#HeatMap
+tips = sns.load_dataset("tips")
+
+corr = tips.corr(numeric_only=True)
+
+sns.heatmap(corr, annot=True, cmap="coolwarm")
+
+plt.title("Correlation Heatmap of Tips Dataset")
+
+plt.show()
+
+
+
+
+#Pairplot
+sns.pairplot(tips, hue="sex")
+
 plt.show()
