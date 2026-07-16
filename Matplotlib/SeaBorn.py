@@ -54,3 +54,7 @@ plt.show()
 sns.pairplot(tips, hue="sex")
 
 plt.show()
+
+
+plt.pie(y="total_bill")
+plt.show()
