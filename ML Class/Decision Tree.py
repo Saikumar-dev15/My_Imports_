@@ -46,8 +46,8 @@ grid = GridSearchCV(
     cv=3,)                            #our data is divided  into 3 parts. (2- training and 1- testing)
 grid.fit(x_train, y_train)
 
-print(grid.best_params_)
-print(grid.best_score_)
+#print(grid.best_params_)
+#print(grid.best_score_)
 
 
 
@@ -64,8 +64,8 @@ data = load_breast_cancer()
 X = pd.DataFrame(data.data, columns=data.feature_names)
 y = data.target
 
-print(X.shape)   # (569, 30)
-print(len(y))    # 569
+#print(X.shape)   # (569, 30)
+#print(len(y))    # 569
 
 
 X_train, X_test, y_train, y_test = train_test_split(
@@ -94,10 +94,44 @@ grid = GridSearchCV(
 
 grid.fit(X_train, y_train)
 
-print("Best Parameters:", grid.best_params_)
-print("Best Score:", grid.best_score_)
+#print("Best Parameters:", grid.best_params_)
+#print("Best Score:", grid.best_score_)
 
 y_pred = grid.predict(X_test)
 #print(f"y_pred: ",y_pred)
-print("Accuracy:", accuracy_score(y_test, y_pred))
+#print("Accuracy:", accuracy_score(y_test, y_pred))
+
+
+
+
+#Random Search 
+
+from sklearn.model_selection import RandomizedSearchCV, train_test_split
+from sklearn.ensemble   import RandomForestClassifier
+import numpy as np
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+X_train, X_test , y_train , y_test = train_test_split(
+    X,y, test_size=0.2 , random_state=42
+) 
+
+model = RandomForestClassifier()
+
+params ={
+    'n_estimators': [50,100,150,200],
+    'max_depth': [5,10,15,20],
+    'min_samples_split': [2,5,10]
+}
+
+rand = RandomizedSearchCV(model, params, cv =3, n_iter=5, scoring="accuracy" )
+
+rand.fit(X_train, y_train)
+
+#print(rand.best_estimator_)
+#print(rand.best_params_)
+print(rand.best_score_)
 
